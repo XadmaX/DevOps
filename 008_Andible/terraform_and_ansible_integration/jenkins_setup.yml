@@ -1,0 +1,72 @@
+---
+- hosts: jenkins
+  become: yes
+  # vars_files:
+  #   - vars/default.yml
+  tasks:
+    - name: Update apt cache
+      apt: update_cache=yes
+
+    - name: Install software-properties-common
+      apt: name=software-properties-common state=present
+
+    - name: Add Jenkins apt repository key
+      apt_key:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+        state: present
+        become: yes
+
+    - name: Add Jenkins apt repository
+      apt_repository:
+        repo: deb https://pkg.jenkins.io/debian-stable binary/
+        state: present
+        become: yes
+
+    - name: Install Jenkins
+      apt:
+        name: jenkins
+        state: present
+        become: yes
+
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+        become: yes
+
+    - name: Enable Apache mods
+      command: a2enmod proxy
+      notify:
+        - restart apache
+
+    - name: Enable SSL mod
+      command: a2enmod ssl
+      notify:
+        - restart apache
+
+    - name: Create directory for SSL certificate
+      file:
+        path: /etc/apache2/ssl
+        state: directory
+        mode: "0755"
+
+    - name: Generate SSL certificate
+      command: openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+      args:
+        creates: /etc/apache2/ssl/apache.crt
+
+    - name: Copy Apache configuration for Jenkins
+      copy: src=files/000-default.conf dest=/etc/apache2/sites-available/000-default.conf
+      notify:
+        - restart apache
+
+    - name: Enable Jenkins site
+      command: a2ensite jenkins
+      notify:
+        - restart apache
+
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted

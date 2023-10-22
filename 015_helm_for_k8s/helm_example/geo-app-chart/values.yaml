@@ -1,0 +1,32 @@
+mongo:
+  image:
+    repository: yemax/geography-db
+    tag: 2
+  resources:
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+  persistentVolume:
+    hostPath: "/tmp/hostpath-provisioner/default/mongo-pvc"
+    size: 1Gi
+  secret:
+    username: YWRtaW4= # admin in base64
+    password: YWRtaW4= # admin in base64
+server:
+  image:
+    repository: yemax/geography-server
+    tag: 2
+  resources:
+    limits:
+      memory: "128Mi"
+      cpu: "500m"
+  containerPort: 4000
+  env:
+    MONGODB_URL: "mongodb://admin:admin@geography-db:27017/geographydb?authSource=admin"
+ingress:
+  enabled: true
+  annotations: {}
+  path: "/"
+  pathType: Prefix
+  serviceName: geography-server
+  servicePort: 4000

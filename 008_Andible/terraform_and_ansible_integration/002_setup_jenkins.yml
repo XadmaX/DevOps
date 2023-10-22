@@ -1,0 +1,52 @@
+---
+- hosts: jenkins
+  become: yes
+  vars:
+    jenkins_user: jenkins
+    jenkins_password: changeme
+    jenkins_home: /var/lib/jenkins
+    jenkins_http_port: 8080
+
+  tasks:
+    - name: Install Java
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
+    - name: Add Jenkins repository
+      apt_repository:
+        repo: deb https://pkg.jenkins.io/debian-stable binary/
+        filename: jenkins_apt.deb
+        state: present
+        update_cache: yes
+
+    - name: Install Jenkins
+      apt:
+        name: jenkins
+        state: present
+
+    - name: Create Jenkins user
+      user:
+        name: "{{ jenkins_user }}"
+        password: "{{ jenkins_password }}"
+        shell: /bin/bash
+        home: "{{ jenkins_home }}"
+        groups: sudo
+
+    - name: Configure Jenkins
+      template:
+        src: jenkins.conf.j2
+        dest: /etc/jenkins/jenkins.conf
+
+    - name: Start Jenkins
+      service:
+        name: jenkins
+        state: started
+        enabled: yes
+
+    - name: Open Jenkins firewall port
+      firewalld:
+        state: enabled
+        zone: public
+        service: jenkins
+        ports: "{{ jenkins_http_port }}"

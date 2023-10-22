@@ -1,0 +1,5 @@
+---
+# vars file for jenkins_setup
+ssl_cert_file: /path/to/your/certfile.crt
+ssl_key_file: /path/to/your/keyfile.key
+...
