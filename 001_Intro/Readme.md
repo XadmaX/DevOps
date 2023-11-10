@@ -1,3 +1,3 @@
 # First lesson
 
-[Presentation](https://docs.google.com/presentation/d/1Cyv1Q0o1S2W9ZGoog7KIS8pgh3jo0BYwCKwf6OBGlyU/edit?usp=sharing)
+[Presentation](https://docs.google.com/presentation/d/1WwVkXaFpCmgRYJnD8DH4ccn8N_-FyKc6T4eeNWvi0LM/edit?usp=sharing)
