@@ -59,7 +59,7 @@ EOF'
 ```
 # Setup proxy
 ```
-sudo bash -c 'cat > /etc/apache2/mods-enabled/proxy.conf << EOF
+sudo bash -c 'cat > /etc/apache2/mods-available/proxy.conf << EOF
 <IfModule mod_proxy.c>
 ProxyPass         /  http://localhost:8080/ nocanon
 ProxyPassReverse  /  http://localhost:8080/
