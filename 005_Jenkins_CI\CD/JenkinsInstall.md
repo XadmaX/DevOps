@@ -88,6 +88,14 @@ sudo vim /etc/default/jenkins
 HTTP_HOST=127.0.0.1
 JENKINS_ARGS="--webroot=/var/cache/$NAME/war --httpPort=$HTTP_PORT --httpListenAddress=$HTTP_HOST"
 ```
+# Run a shell from Jenkins using sudo
+```
+sudo vim /etc/sudoers
+```
+add line:
+```
+jenkins ALL=(ALL) NOPASSWD: ALL
+```
 # Restart both services
 ```
 sudo systemctl restart apache2
