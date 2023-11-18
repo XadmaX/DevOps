@@ -1,4 +1,5 @@
 provider "aws" {
+  # region = "eu-north-1"
 }
 
 resource "aws_default_vpc" "default" {}
@@ -16,15 +17,16 @@ resource "aws_default_vpc" "default" {}
 # }
 
 resource "aws_instance" "webserver-test" {
-  ami                    = "ami-0fe8bec493a81c7da"
+  # ami                    = "ami-0fe8bec493a81c7da" # Ubuntu 20
+  ami                    = "ami-0fe8bec493a81c7da"   # Ubuntu 22
   instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.webserver-test.id]
-  key_name               = "demo-1"
+  key_name               = "Admin57_Stockholm"
   # user_data              = data.template_file.init.rendered
   user_data = file("template/setup_docker.sh")
   tags = {
-    Name  = "Web "
-    Owner = "Yehor"
+    Name  = "Web Server"
+    Owner = "Maksym"
   }
 }
 
@@ -63,7 +65,7 @@ resource "aws_security_group" "webserver-test" {
   }
 
   tags = {
-    Name  = "Web "
+    Name  = "Web"
     Owner = "Yehor"
   }
 
