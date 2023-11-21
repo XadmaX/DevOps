@@ -32,7 +32,7 @@ resource "aws_instance" "webserver-test" {
 
 
 resource "aws_security_group" "webserver-test" {
-  name        = "WebServer Security Group"
+  name        = "WebServer Security Group 2"
   description = "My First SecurityGroup"
   vpc_id      = aws_default_vpc.default.id
 
@@ -66,7 +66,7 @@ resource "aws_security_group" "webserver-test" {
 
   tags = {
     Name  = "Web"
-    Owner = "Yehor"
+    Owner = "Max"
   }
 
 }
