@@ -44,5 +44,4 @@
 
     - name: Print return information from the previous task
       ansible.builtin.debug:
-        var: pwd
-        verbosity: 2
+        msg: "Jenkins Initial Admin Password: {{ pwd.stdout }}"

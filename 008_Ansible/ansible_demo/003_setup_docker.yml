@@ -1,9 +1,0 @@
----
-- hosts: jenkins
-  become: yes
-  tasks:
-    - name: Update repositories cache
-      ansible.builtin.apt:
-        update_cache: yes
-
-    - name: Install docker
