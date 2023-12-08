@@ -21,7 +21,7 @@ resource "aws_instance" "webserver-test" {
   ami                    = "ami-0fe8bec493a81c7da"   # Ubuntu 22
   instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.webserver-test.id]
-  key_name               = "Admin57_Stockholm"
+  key_name               = "Admin57_2"
   # user_data              = data.template_file.init.rendered
   user_data = file("template/setup_docker.sh")
   tags = {
@@ -32,7 +32,7 @@ resource "aws_instance" "webserver-test" {
 
 
 resource "aws_security_group" "webserver-test" {
-  name        = "WebServer Security Group 2"
+  name        = "WebServer Security Group 3"
   description = "My First SecurityGroup"
   vpc_id      = aws_default_vpc.default.id
 
