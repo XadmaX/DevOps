@@ -3,7 +3,7 @@
 ###  - Fork [project](https://github.com/YegorMaksymchuk/geography-application)
 ###  - Import project to GitLab
 ###  - Create .gitlab-ci.yml file
-###  - Setup dedicated gitlab runner linked to your project [docs](https://docs.gitlab.com/runner/install/)
+###  - Setup dedicated GitLab runner linked to your project [docs](https://docs.gitlab.com/runner/install/)
 ###  - Setup GitLab CI/CD pipeline to build and push
 ###  - Setup webhooks to trigger Jenkins job on successful build 
 - [GitLab webhook](https://docs.gitlab.com/ee/user/project/integrations/webhooks.html)
@@ -20,4 +20,4 @@
 - ON successful build Jenkins job should be triggered
 - Jenkins job should create AWS EC2 instance with Terraform or Jenkins plugin 
 - Jenkins job should deploy application to AWS EC2 instance as a Docker container
-- * Implement AWS EC2 instance creation and deply with GitLab CI\CD and terraform like a bonus to Jenkins solution
+- * Implement AWS EC2 instance creation and deploy with GitLab CI\CD and terraform like a bonus to Jenkins solution
