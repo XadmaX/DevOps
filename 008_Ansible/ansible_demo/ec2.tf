@@ -8,7 +8,7 @@ resource "aws_instance" "jenkins_master" {
   ami                    = "ami-0fe8bec493a81c7da"
   instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.jenkins_master.id]
-  key_name               = "Admin57_Stockholm"
+  key_name               = "Admin57_2"
 
   tags = {
     Name  = "Jenkins"
