@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geography-server-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: geography-server
+  template:
+    metadata:
+      labels:
+        app: geography-server
+    spec:
+      containers:
+        - name: geography-server
+          image: maxkhal/geography-server:2
+          # resources:
+          #   limits:
+          #     memory: "128Mi"
+          #     cpu: "500m"
+          ports:
+            - containerPort: 4000
+          env:
+            - name: MONGODB_URL
+              value: "mongodb://admin:admin@geography-db:27017/geographydb?authSource=admin"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: geography-server
+spec:
+  selector:
+    app: geography-server
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000
