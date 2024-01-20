@@ -23,5 +23,5 @@ eksctl delete cluster -f cluster.yaml
 ## Get new cluster kubeconfig
 
 ```shell
-aws eks update-kubeconfig --region eu-central-1 --name prog-kyiv-ua
+aws eks update-kubeconfig --region eu-north-1 --name prog-kyiv-ua
 ```

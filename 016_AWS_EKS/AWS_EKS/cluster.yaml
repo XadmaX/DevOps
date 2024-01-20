@@ -7,16 +7,16 @@ metadata:
 
 nodeGroups:
   - name: ng-1
-    instanceType: m5.large
+    instanceType: t3.small
     desiredCapacity: 1
     volumeSize: 30
     ssh:
       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
-      # publicKeyPath: /home/maxkhal/PA/Admin57_2.pem
+      # publicKeyPath: /home/maxkhal/PA/Admin57_2.pub
   - name: ng-2
-    instanceType: m5.large
+    instanceType: t3.small
     desiredCapacity: 1
     volumeSize: 30
     ssh:
       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
-      # publicKeyPath: /home/maxkhal/PA/Admin57_2.pem
+      # publicKeyPath: /home/maxkhal/PA/Admin57_2.pub
