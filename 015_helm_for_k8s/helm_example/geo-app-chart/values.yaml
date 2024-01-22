@@ -1,6 +1,6 @@
 mongo:
   image:
-    repository: yemax/geography-db
+    repository: maxkhal/geography-db
     tag: 2
   resources:
     limits:
@@ -14,7 +14,7 @@ mongo:
     password: YWRtaW4= # admin in base64
 server:
   image:
-    repository: yemax/geography-server
+    repository: maxkhal/geography-server
     tag: 2
   resources:
     limits:
